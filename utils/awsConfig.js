@@ -1,71 +1,29 @@
-const AWS = require('aws-sdk');
+const { S3Client } = require("@aws-sdk/client-s3");
+const { fromEnv } = require("@aws-sdk/credential-provider-env");
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const { v4: uuidv4 } = require('uuid');
 
-// ? Set the region and credentials
+//? configuring the aws s3 bucket
 
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION
+const s3 = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: fromEnv()
 });
-
-const s3 = new AWS.S3();
-
-// ? configure multer-s3
-
-//? photo uploader config
 
 const uploadS3 = multer({
-  storage: multerS3({
-      s3: s3,
-      bucket: process.env.AWS_BUCKET_NAME,
-      acl: 'public-read',
-      key: function (req, file, cb) {
-          const extension = file.originalname.split('.').pop();
-          const filename = `${uuidv4()}.${extension}`;
-          cb(null, filename);
-      }
-  }),
-  limits: {
-      fileSize: 1024 * 1024 * 5 // ? 5MB
-  },
-  fileFilter: function (req, file, cb) {
-      if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-          cb(null, true);
-      } else {
-          cb(new Error('Invalid file type. Only JPEG and PNG image files are allowed.'));
-      }
-  }
-});
+    storage: multerS3({
+        s3: s3,
+        bucket: process.env.AWS_BUCKET_NAME,
+        acl: 'public-read',
+        key: function (req, file, cb) {
+            const extension = file.originalname.split('.').pop();
+            const filename = `${uuidv4()}.${extension}`;
+            cb(null, filename);
+        }
+    }),
+    
+  });
+//? exporting the module namely uploadS3 to be used in uploading photos and pdfs respectively
 
-//?  pdp uploader  config
-
-const uploadPdfS3 = multer({
-  storage: multerS3({
-      s3: s3,
-      bucket: process.env.AWS_BUCKET_NAME,
-      acl: 'public-read',
-      key: function (req, file, cb) {
-          const extension = file.originalname.split('.').pop();
-          const filename = `${uuidv4()}.${extension}`;
-          cb(null, filename);
-      }
-  }),
-  limits: {
-      fileSize: 1024 * 1024 * 10 // ? 10MB
-  },
-  fileFilter: function (req, file, cb) {
-      if (file.mimetype === 'application/pdf') {
-          cb(null, true);
-      } else {
-          cb(new Error('Invalid file type. Only PDF files are allowed.'));
-      }
-  }
-});
-
-
-//? exporting the modules namely uploadS3 and uploadPdfS3 to be used in uploading photos and pdfs respectively
-
-module.exports = {uploadS3, uploadPdfS3};
+module.exports = uploadS3;

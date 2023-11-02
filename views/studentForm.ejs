@@ -1,0 +1,32 @@
+<!-- FILEPATH: /c:/Users/91636/Desktop/KRN_portal_backend/views/studentForm.ejs -->
+
+<form action="/postStudentProfile" method="POST" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="dob">DOB:</label>
+    <input type="date" id="dob" name="dob" required><br>
+
+    <label for="email">Email ID:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="contact">Contact Number:</label>
+    <input type="tel" id="contactNumber" name="contactNumber" required><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" required></textarea><br>
+
+    <label for="photo">Photo Upload (JPEG, PNG):</label>
+    <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" required><br>
+
+    <label for="resume">Resume (PDF):</label>
+    <input type="file" id="resume" name="resume" accept="application/pdf" required><br>
+
+    <label for="domain">Domain:</label>
+    <input type="text" id="domain" name="domain" required><br>
+
+    <label for="experience">Years of Experience:</label>
+    <input type="number" id="yearsOfExperience" name="yearsOfExperience" required><br>
+
+    <input type="submit" value="Submit">
+</form>
