@@ -1,0 +1,18 @@
+<!-- FILEPATH: /c:/Users/91636/Desktop/KRN_portal_backend/views/companyForm.ejs -->
+
+<form action="/postCompanyProfile" method="POST" enctype="multipart/form-data">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="email">Email ID:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="contact">Contact Number:</label>
+  <input type="tel" id="contact" name="contact" required>
+
+  <label for="file">File Upload (PDF):</label>
+  <input type="file" id="file" name="file" accept="application/pdf" required>
+  <small>Max file size: 5MB</small>
+
+  <button type="submit">Submit</button>
+</form>

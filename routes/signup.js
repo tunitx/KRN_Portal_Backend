@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 // const verifyToken = require("../utils/auth");
-const User = require("../Models/UserAuthSchema"); 
+const User = require("../models/UserAuthSchema"); 
 const db = require("../utils/db");
 
 //? for registering new user
@@ -14,8 +14,9 @@ router.post("/signup", async (req, res) => {
   console.log(req.body);
 
   const { username, email, password } = req.body;
-  const existingUser = await User.findOne({ email });
-  const existingUserName = await User.findOne({ name: username });
+  
+  const existingUser = await User.findOne({ email:email });
+  const existingUserName = await User.findOne({ username:username });
 
   //? to check if the user has already registered
 
@@ -30,7 +31,7 @@ router.post("/signup", async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, saltRounds);
   const userWithProfiles = new User({
-    name: username,
+    username: username,
     email: email,
     password: hashedPassword,
   });

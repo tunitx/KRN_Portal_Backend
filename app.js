@@ -7,28 +7,52 @@ const ejs = require("ejs");
 const db = require("./utils/db");
 const path = require('path');
 
-// Set the views directory
-
-
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 
-// Set the view engine to ejs
 app.set('view engine', 'ejs');
+
+
 //? importing routes
 const postStudentProfile = require("./routes/studentProfile");
 const signin = require("./routes/signin");
 const signup = require("./routes/signup");
+const postCompanyProfile = require("./routes/companyProfile");
+const postExpertProfile = require("./routes/expertProfile");
+const postQuery = require("./routes/query");
+const updateStudentProfile = require("./routes/updateStudentProfile");
+const updateCompanyProfile = require("./routes/updateCompanyProfile");
+const updateExpertProfile = require("./routes/updateExpertProfile");
+const deleteStudentProfile = require("./routes/deleteStudentProfile");
+const deleteExpertProfile = require("./routes/deleteExpertProfile");
+const deleteCompanyProfile = require("./routes/deleteCompanyProfile");
 
 //? using the routes
 app.use(postStudentProfile);
+app.use(postCompanyProfile);
+app.use(postExpertProfile);
+app.use(postQuery);
+app.use(signin);
+app.use(signup);
+app.use(updateStudentProfile);
+app.use(updateCompanyProfile);
+app.use(updateExpertProfile);
+app.use(deleteStudentProfile);
+app.use(deleteCompanyProfile);
+app.use(deleteExpertProfile);
+
 
 app.get('/studentProfileForm',  async (req, res) => {
   res.render('studentForm');
 });
+
+app.get('/postCompanyForm', async (req, res) => {
+res.render('companyForm');
+})
+
 
 app.listen(process.env.PORT || 3000, () => {
     console.log("Server is up on port : " + process.env.PORT || 3000);

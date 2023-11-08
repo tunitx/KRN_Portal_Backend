@@ -36,6 +36,10 @@ const studentSchema = new mongoose.Schema({
     yearsOfExperience: {
         type: Number,
         required: true
+    },
+    date_of_log : {
+        type: Date,
+        default: Date.now
     }
 });
 

@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 // const verifyToken = require("../utils/verifyToken");
-const User = require("../Models/UserAuthSchema");
+const User = require("../models/UserAuthSchema");
 const db = require("../utils/db");
 
 
@@ -23,12 +23,12 @@ router.post("/signin", async (req, res) => {
     const token = jwt.sign({ email }, process.env.JWT_SECRET);
   
     //? populate the user object with the khojoUserProfiles array
-    const userWithProfiles = await User.findById(user._id)
-    .populate({ path: "khojoUserProfiles", populate: { path: "template" } });
+    const currUser = await User.findById(user._id)
+    .populate({ path: "student"});
   
     // ? Send JWT token in response
   
-    res.json({ message: "Login successful", token, userWithProfiles });
+    res.json({ message: "Login successful", token, currUser });
   });
 
 
