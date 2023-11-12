@@ -29,6 +29,7 @@ const updateExpertProfile = require("./routes/updateExpertProfile");
 const deleteStudentProfile = require("./routes/deleteStudentProfile");
 const deleteExpertProfile = require("./routes/deleteExpertProfile");
 const deleteCompanyProfile = require("./routes/deleteCompanyProfile");
+const postMarriageDetails = require("./routes/postMarriageDetails");
 
 //? using the routes
 app.use(postStudentProfile);
@@ -43,6 +44,7 @@ app.use(updateExpertProfile);
 app.use(deleteStudentProfile);
 app.use(deleteCompanyProfile);
 app.use(deleteExpertProfile);
+app.use(postMarriageDetails);
 
 
 app.get('/studentProfileForm',  async (req, res) => {
