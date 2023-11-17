@@ -1,15 +1,17 @@
 const express = require("express");
-const cors = require("cors");
+// const cors = require("cors");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 dotenv.config();
 const ejs = require("ejs");
 const db = require("./utils/db");
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
 app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 
@@ -55,6 +57,9 @@ app.get('/postCompanyForm', async (req, res) => {
 res.render('companyForm');
 })
 
+app.get('/marriageForm', async (req, res) => {
+  res.render('marriageForm');
+})
 
 app.listen(process.env.PORT || 3000, () => {
     console.log("Server is up on port : " + process.env.PORT || 3000);

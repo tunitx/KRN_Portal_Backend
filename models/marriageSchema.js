@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const marriageSchema = new mongoose.Schema({
     gender: {
         type: String,
-        enum: ['Male', 'Female'],
+        // enum: ['Male', 'Female'],
         required: true
     },
     fullName: {
@@ -26,9 +26,13 @@ const marriageSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    age : {
+        type: Number,
+        required: true
+    },
     manglik: {
         type: String,
-        enum: ['Yes', 'No', 'Anshik'],
+        // enum: ['yes', 'no', 'anshik'],
         required: true
     },
     placeOfBirth: {
@@ -39,16 +43,24 @@ const marriageSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    nativePlace: {
+    countryType: {
         type: String,
         required: true
     },
-    heightInFeet: {
-        type: Number,
+    country : {
+        type: String,
         required: true
     },
+    state: {
+        type: String,
+        required: true
+    },
+    city: {
+      type: String,
+      required : true  
+    },
     heightInCms: {
-        type: Number,
+        type: String,
         required: true
     },
     complexion: {
@@ -59,19 +71,48 @@ const marriageSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    occupation:{
+        type: String,
+        required: true
+    },
     incomeBracket: {
         type: String,
         required: true
     },
-    photo: {
+    maritalStatus: {
+        type: String,
+        // enum: ['Never Married', 'Divorced', 'Widowed', 'Awaiting Divorce'],
+        required: true
+    },
+    pwd:{
         type: String,
         required: true
     },
-    contactDetails: {
+    file: {
         type: String,
         required: true
     },
-    confirmationAndConsent: {
+    image1: {
+        type: String,
+        required: true
+    },
+    image2: {
+        type: String,
+        required: true
+    },
+    image3: {
+        type: String,
+        required: true
+    },
+    phoneNumber1 :{
+        type: Number,
+        required: true
+    },
+    phoneNumber2 :{
+        type: Number,
+        required: true
+    },
+    email : {
         type: String,
         required: true
     },

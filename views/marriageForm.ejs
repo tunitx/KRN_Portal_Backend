@@ -1,0 +1,103 @@
+<!-- FILEPATH: /c:/Users/91636/Desktop/KRN_portal_backend/views/marriageForm.ejs -->
+
+<!-- First screen -->
+<form action="/postMarriageDetails" method="POST">
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+
+
+
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" name="fullName" required>
+
+    <!-- Custom API needed to populate caste, subcaste, and gotra dropdowns -->
+    <label for="caste">Caste:</label>
+    <select id="caste" name="caste">
+        <option value="caste1">Caste 1</option>
+        <option value="caste2">Caste 2</option>
+    </select>
+    <label for="subcaste">Subcaste:</label>
+    <select id="subcaste" name="subcaste">
+        <option value="subcaste1">Subcaste 1</option>
+        <option value="subcaste2">Subcaste 2</option>
+    </select>
+    <label for="gotra">Gotra:</label>
+    <select id="gotra" name="gotra">
+        <option value="gotra1">Gotra 1</option>
+        <option value="gotra2">Gotra 2</option>
+    </select>
+
+    <!-- Auto calculate age based on DOB -->
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required>
+
+    <!-- Manglik radio buttons -->
+    <label for="manglik">Manglik:</label>
+    <input type="radio" id="yes" name="manglik" value="yes">
+    <label for="yes">Yes</label>
+    <input type="radio" id="no" name="manglik" value="no">
+    <label for="no">No</label>
+    <input type="radio" id="anshik" name="manglik" value="anshik">
+    <label for="anshik">Anshik</label>
+
+
+
+    <!-- Third screen -->
+
+    <label for="placeOfBirth">Place of Birth:</label>
+    <input type="text" id="placeOfBirth" name="placeOfBirth" required>
+
+    <label for="currentAddress">Current Address:</label>
+    <input type="text" id="currentAddress" name="currentAddress" required>
+
+    <label for="nativePlace">Native Place:</label>
+    <input type="text" id="nativePlace" name="nativePlace" required>
+
+
+    <!-- Fourth screen -->
+
+    <!-- Height in feet, auto calculate in cm -->
+    <label for="heightInFeet">Height (in feet):</label>
+    <input type="number" id="heightInFeet" name="heightInFeet" required>
+    <!-- <label for="heightCm">Height (in cm):</label>
+    <input type="number" id="heightCm" name="heightCm" readonly> -->
+
+    <!-- Complexion dropdown -->
+    <label for="complexion">Complexion:</label>
+    <select id="complexion" name="complexion">
+        <option value="fair">Fair</option>
+        <option value="medium">Medium</option>
+        <option value="dark">Dark</option>
+    </select>
+
+    <!-- Education dropdown -->
+    <label for="education">Education:</label>
+    <select id="education" name="education">
+        <option value="education1">Education 1</option>
+        <option value="education2">Education 2</option>
+    </select>
+
+    <!-- Income bracket dropdown -->
+    <label for="incomeBracket">Income Bracket:</label>
+    <select id="incomeBracket" name="incomeBracket">
+        <option value="income1">Income 1</option>
+        <option value="income2">Income 2</option>
+    </select>
+
+    <!-- File upload with size constraint -->
+    <label for="photo Upload">Upload photo:</label>
+    <input type="file" id="photo" name="photo"  required>
+
+    <!-- Phone number validation -->
+    <label for="contactDetails">Contact Details:</label>
+    <input type="tel" id="contactDetails" name="contactDetails" pattern="[0-9]{10}" required>
+
+    <!-- Confirmation and consent checkbox and text field -->
+    <input type="checkbox" id="confirmation" name="confirmation" required>
+    <label for="confirmation">I confirm that the above details are true and correct.</label>
+    <br>
+    <button type="submit">Submit</button>
+</form>
