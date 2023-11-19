@@ -1,11 +1,11 @@
 
 const express = require('express');
 const router = express.Router();
-const uploadS3 = require('../utils/awsConfig');
+const uploadS3 = require('../../utils/awsConfig');
 
-const Student = require('../models/StudentSchema');
-const User = require('../models/UserAuthSchema');
-const verifyToken = require('../utils/verifyToken');
+const Student = require('../../models/StudentSchema');
+const User = require('../../models/UserAuthSchema');
+const verifyToken = require('../../utils/verifyToken');
 
 router.put('/updateStudentProfile', verifyToken, uploadS3.fields([
   { name: 'photo', maxCount: 1 },

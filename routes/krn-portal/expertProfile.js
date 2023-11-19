@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const ExpertProfile = require('../models/ExpertSchema');
+const ExpertProfile = require('../../models/ExpertSchema');
 
 router.post('/postExpertProfile', async (req, res) => {
   try {

@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const Query = require('../models/QuerySchema');
+const Query = require('../../models/QuerySchema');
 
 router.post('/postQuery', async (req, res) => {
     const { name, email, contactNumber, domain, subDomain, query } = req.body;

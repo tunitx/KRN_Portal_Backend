@@ -1,11 +1,11 @@
 
 const express = require('express');
 const router = express.Router();
-const uploadS3 = require('../utils/awsConfig');
+const uploadS3 = require('../../utils/awsConfig');
 
-const Expert= require('../models/ExpertSchema');
-const User = require('../models/UserAuthSchema');
-const verifyToken = require('../utils/verifyToken');
+const Expert= require('../../models/ExpertSchema');
+const User = require('../../models/UserAuthSchema');
+const verifyToken = require('../../utils/verifyToken');
 
 router.put('/updateExpertProfile', verifyToken, async (req, res) => {
   const updates = Object.keys(req.body);

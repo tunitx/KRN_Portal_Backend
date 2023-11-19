@@ -3,8 +3,8 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 // const verifyToken = require("../utils/auth");
-const User = require("../models/UserAuthSchema"); 
-const db = require("../utils/db");
+const User = require("../../models/UserAuthSchema"); 
+const db = require("../../utils/db");
 
 //? for registering new user
 

@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const StudentProfile = require('../models/StudentSchema');
+const StudentProfile = require('../../models/StudentSchema');
 
 router.delete('/deleteStudentProfile/:id', async (req, res) => {
   try {

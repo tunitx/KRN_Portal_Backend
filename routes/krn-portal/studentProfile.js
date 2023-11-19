@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const verifyToken = require("../utils/verifyToken");
-const StudentProfile = require("../models/StudentSchema");
-const User = require("../models/UserAuthSchema");
+const verifyToken = require("../../utils/verifyToken");
+const StudentProfile = require("../../models/StudentSchema");
+const User = require("../../models/UserAuthSchema");
 
-const uploadS3 = require("../utils/awsConfig");
+const uploadS3 = require("../../utils/awsConfig");
 
 // ?? POST /postStudentProfile
 
 router.post(
-  "/postStudentProfile", verifyToken,
+  "/postStudentProfile", verifyToken, 
   uploadS3.fields([
     { name: "photo", maxCount: 1 },
     { name: "resume", maxCount: 1 },

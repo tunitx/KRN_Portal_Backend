@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const CompanyProfile = require('../models/CompanySchema');
+const CompanyProfile = require('../../models/CompanySchema');
 
 router.delete('/deleteCompanyProfile/:id', async (req, res) => {
   try {

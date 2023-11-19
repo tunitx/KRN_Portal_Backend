@@ -9,17 +9,20 @@ router.get('/getBioDataByFilters', async (req, res) => {
         let heightQuery;
         if (height) {
             if (height === 'Less than 4 fts') {
-                heightQuery = { $lt: 4 };
+              heightQuery = { $lt: 4 * 30.48 };
             } else if (height === 'Greater than 6.5 fts') {
-                heightQuery = { $gt: 6.5 };
+              heightQuery = { $gt: 6.5 * 30.48 };
             } else {
-                const [minHeight, maxHeight] = height.replace(' fts', '').split('-');
-                heightQuery = {
-                    $gte: parseFloat(minHeight),
-                    $lt: parseFloat(maxHeight)
-                };
+              const [minHeight, maxHeight] = height.replace(' fts', '').split('-');
+              console.log(minHeight, maxHeight);
+              heightQuery = {
+                $gte: parseFloat(minHeight) * 30.48,
+                $lt: parseFloat(maxHeight) * 30.48
+                
+              };
+              console.log(heightQuery);
             }
-        }
+          }
         let ageQuery;
         if (age) {
             ageQuery = {
@@ -32,8 +35,8 @@ router.get('/getBioDataByFilters', async (req, res) => {
             gender,
             caste,
             subcaste,
-            height: heightQuery,
-            age: ageQuery,
+            heightInCms: heightQuery,
+            age : ageQuery,
             manglik
         };
         if (gotra !== 'none') {
@@ -41,6 +44,7 @@ router.get('/getBioDataByFilters', async (req, res) => {
           }
                        
         const marriageSchemas = await MarriageSchema.find(query);
+        console.log(marriageSchemas);
 
         res.json(marriageSchemas);
     } catch (error) {

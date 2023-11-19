@@ -1,11 +1,11 @@
 
 const express = require('express');
 const router = express.Router();
-const uploadS3 = require('../utils/awsConfig');
+const uploadS3 = require('../../utils/awsConfig');
 
-const Company= require('../models/CompanySchema');
-const User = require('../models/UserAuthSchema');
-const verifyToken = require('../utils/verifyToken');
+const Company= require('../../models/CompanySchema');
+const User = require('../../models/UserAuthSchema');
+const verifyToken = require('../../utils/verifyToken');
 
 router.put('/updateCompanyProfile', verifyToken, uploadS3.fields([
 //   { name: 'photo', maxCount: 1 },
