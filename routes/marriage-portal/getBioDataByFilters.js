@@ -32,11 +32,13 @@ router.get('/getBioDataByFilters', async (req, res) => {
             gender,
             caste,
             subcaste,
-            gotra,
             height: heightQuery,
             age: ageQuery,
             manglik
         };
+        if (gotra !== 'none') {
+            query.gotra = gotra;
+          }
                        
         const marriageSchemas = await MarriageSchema.find(query);
 
