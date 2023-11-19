@@ -19,19 +19,21 @@ app.set('view engine', 'ejs');
 
 
 //? importing routes
-const postStudentProfile = require("./routes/studentProfile");
-const signin = require("./routes/signin");
-const signup = require("./routes/signup");
-const postCompanyProfile = require("./routes/companyProfile");
-const postExpertProfile = require("./routes/expertProfile");
-const postQuery = require("./routes/query");
-const updateStudentProfile = require("./routes/updateStudentProfile");
-const updateCompanyProfile = require("./routes/updateCompanyProfile");
-const updateExpertProfile = require("./routes/updateExpertProfile");
-const deleteStudentProfile = require("./routes/deleteStudentProfile");
-const deleteExpertProfile = require("./routes/deleteExpertProfile");
-const deleteCompanyProfile = require("./routes/deleteCompanyProfile");
-const postMarriageDetails = require("./routes/postMarriageDetails");
+const postStudentProfile = require("./routes/krn-portal/studentProfile");
+const signin = require("./routes/krn-portal/signin");
+const signup = require("./routes/krn-portal/signup");
+const postCompanyProfile = require("./routes/krn-portal/companyProfile");
+const postExpertProfile = require("./routes/krn-portal/expertProfile");
+const postQuery = require("./routes/krn-portal/query");
+const updateStudentProfile = require("./routes/krn-portal/updateStudentProfile");
+const updateCompanyProfile = require("./routes/krn-portal/updateCompanyProfile");
+const updateExpertProfile = require("./routes/krn-portal/updateExpertProfile");
+const deleteStudentProfile = require("./routes/krn-portal/deleteStudentProfile");
+const deleteExpertProfile = require("./routes/krn-portal/deleteExpertProfile");
+const deleteCompanyProfile = require("./routes/krn-portal/deleteCompanyProfile");
+const postMarriageDetails = require("./routes/marriage-portal/postMarriageDetails");
+const getMarriageDetails = require("./routes/marriage-portal/getBioDataByFilters");
+const updateMarriageDetails = require("./routes/marriage-portal/updateMarriageProfile");
 
 //? using the routes
 app.use(postStudentProfile);
@@ -47,6 +49,8 @@ app.use(deleteStudentProfile);
 app.use(deleteCompanyProfile);
 app.use(deleteExpertProfile);
 app.use(postMarriageDetails);
+app.use(getMarriageDetails);
+app.use(updateMarriageDetails);
 
 
 app.get('/studentProfileForm',  async (req, res) => {

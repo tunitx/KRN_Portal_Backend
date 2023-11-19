@@ -1,8 +1,8 @@
 //? Import necessary modules and models
 const express = require("express");
 const router = express.Router();
-const MarriageProfile = require("../models/marriageSchema");
-const uploadS3 = require("../utils/awsConfig");
+const MarriageProfile = require("../../models/marriageSchema");
+const uploadS3 = require("../../utils/awsConfig");
 
 //? Create a post route at /postMarriageDetails
 router.post(

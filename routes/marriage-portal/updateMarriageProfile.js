@@ -1,33 +1,45 @@
 const express = require("express");
 const router = express.Router();
-const uploadS3 = require("../utils/awsConfig");
+const uploadS3 = require("../../utils/awsConfig");
 
-const Marriage = require("../models/marriageSchema");
-const User = require("../models/UserAuthSchema");
-const verifyToken = require("../utils/verifyToken");
+const Marriage = require("../../models/marriageSchema");
+const User = require("../../models/UserAuthSchema");
+const verifyToken = require("../../utils/verifyToken");
 
 router.put(
   "/updateCompanyProfile",
   verifyToken,
-  uploadS3.fields([{ name: "photo", maxCount: 1 }]),
+  uploadS3.fields([{ name: "file", maxCount: 1 },
+  { name: "image1", maxCount: 1 },
+  { name: "image2", maxCount: 1 },
+  { name: "image3", maxCount: 1 },
+  ]),
   async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = [
-      "gender",
-      "fullName",
-      "caste",
-      "subcaste",
-      "gotra",
-      "dob",
-      "manglik",
-      "placeOfBirth",
-      "currentAddress",
-      "nativePlace",
-      "heightInFeet",
-      "complexion",
-      "education",
-      "incomeBracket",
-      "contactDetails",
+      'gender',
+      'fullName',
+      'caste',
+      'subcaste',
+      'gotra',
+      'dob',
+      'manglik',
+      'placeOfBirth',
+      'currentAddress',
+      'location',
+      'country',
+      'state',
+      'city',
+      'heightFeet',
+      'complexion',
+      'education',
+      'occupation',
+      'incomeBracket',
+      'maritalStatus',
+      'pwd',
+      'phoneNumber1',
+      'phoneNumber2',
+      'email'
     ];
 
     const isValidOperation = updates.every((update) =>

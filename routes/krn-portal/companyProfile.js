@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const verifyToken = require("../utils/verifyToken");
-const CompanyProfile = require("../models/CompanySchema");
+const verifyToken = require("../../utils/verifyToken");
+const CompanyProfile = require("../../models/CompanySchema");
 
-const uploadS3 = require("../utils/awsConfig");
- const User = require("../models/UserAuthSchema");
+const uploadS3 = require("../../utils/awsConfig");
+ const User = require("../../models/UserAuthSchema");
 
 router.post(
   "/postCompanyProfile",

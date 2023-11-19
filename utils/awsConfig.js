@@ -13,37 +13,37 @@ const s3 = new S3Client({
   credentials: fromEnv()
 });
 
-  const uploadS3 = multer({
-    storage: multerS3({
-      s3: s3,
-      bucket: process.env.AWS_BUCKET_NAME,
-      acl: 'public-read',
+const uploadS3 = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.AWS_BUCKET_NAME,
+    acl: 'public-read',
+    key: function (req, file, cb) {
+      const extension = file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' ? 'webp' : file.originalname.split('.').pop();
+      const filename = `${uuidv4()}.${extension}`;
+      cb(null, filename);
+    },
+    shouldTransform: function (req, file, cb) {
+      cb(null, /^image/i.test(file.mimetype));
+    },
+    transforms: [{
+      id: 'original',
       key: function (req, file, cb) {
         const extension = file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' ? 'webp' : file.originalname.split('.').pop();
         const filename = `${uuidv4()}.${extension}`;
         cb(null, filename);
       },
-      shouldTransform: function (req, file, cb) {
-        cb(null, /^image/i.test(file.mimetype));
+      transform: function (req, file, cb) {
+        let transform = sharp();
+        if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+          transform = transform.webp();
+        }
+
+        cb(null, transform);
       },
-      transforms: [{
-        id: 'original',
-        key: function (req, file, cb) {
-          const extension = file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' ? 'webp' : file.originalname.split('.').pop();
-          const filename = `${uuidv4()}.${extension}`;
-          cb(null, filename);
-        },
-        transform: function (req, file, cb) {
-          let transform = sharp();
-          if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-            transform = transform.webp();
-          }
-  
-          cb(null, transform);
-        },
-      }],
-    }),
-  });
+    }],
+  }),
+});
 //? exporting the module namely uploadS3 to be used in uploading photos and pdfs respectively
 
 module.exports = uploadS3;
