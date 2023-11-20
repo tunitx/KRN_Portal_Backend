@@ -1,44 +1,56 @@
-
 const express = require('express');
 const router = express.Router();
 const MarriageSchema = require('../../models/marriageSchema'); 
 
 router.get('/getBioDataByFilters', async (req, res) => {
   try {
-      const { gender, caste, subcaste, gotra, height, age, manglik } = req.query;
-      let heightQuery;
+    const { gender, caste, subcaste, gotra, height, ageRange, manglik } = req.query;
+      
+    // Parse ageRange into an object
+    const parsedAgeRange = JSON.parse(ageRange);
+    console.log(parsedAgeRange);
+      let query = {};
+
+      if (gender) {
+          query.gender = gender;
+      }
+      if (caste) {
+          query.caste = caste;
+      }
+      if (subcaste) {
+          query.subcaste = subcaste;
+      }
+      if (manglik) {
+          query.manglik = manglik;
+      }
+      if (gotra && gotra.length > 0 && !gotra.includes('none')) {
+          query.gotra = { $nin: gotra };
+      }
       if (height) {
           if (height === 'Less than 4 fts') {
-            heightQuery = { $lt: 4 * 30.48 };
+            query.heightInCms = { $lt: 4 * 30.48 };
           } else if (height === 'Greater than 6.5 fts') {
-            heightQuery = { $gt: 6.5 * 30.48 };
+            query.heightInCms = { $gt: 6.5 * 30.48 };
           } else {
             const [minHeight, maxHeight] = height.replace(' fts', '').split('-');
-            heightQuery = {
+            query.heightInCms = {
               $gte: parseFloat(minHeight) * 30.48,
               $lt: parseFloat(maxHeight) * 30.48
             };
           }
       }
-      let ageQuery;
-      if (age) {
-          ageQuery = {
-              $gte: parseInt(age) - 2,
-              $lte: parseInt(age) + 2
-          };
-      }
+      if (ageRange) {
+        const parsedAgeRange = JSON.parse(ageRange);
+        console.log(parsedAgeRange);
 
-      const query = {
-          gender,
-          caste,
-          subcaste,
-          heightInCms: heightQuery,
-          age : ageQuery,
-          manglik
-      };
-      if (gotra && gotra.length > 0 && !gotra.includes('none')) {
-          query.gotra = { $in: gotra };
-      }
+        if (parsedAgeRange.min && parsedAgeRange.max) {
+            query.age = {
+                $gte: parsedAgeRange.min,
+                $lte: parsedAgeRange.max
+            };
+            console.log(query.age);
+        }
+    }
                      
       const marriageSchemas = await MarriageSchema.find(query);
 
