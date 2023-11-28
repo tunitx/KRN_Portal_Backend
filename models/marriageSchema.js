@@ -6,10 +6,15 @@ const marriageSchema = new mongoose.Schema({
         // enum: ['Male', 'Female'],
         required: true
     },
-    fullName: {
+    firstName: {
         type: String,
         required: true
     },
+    surname : {
+        type: String,
+        required: true
+    },
+    
     caste: {
         type: String,
         required: true
@@ -37,15 +42,13 @@ const marriageSchema = new mongoose.Schema({
     },
     placeOfBirth: {
         type: String,
-        required: true
     },
-    currentAddress: {
+   
+    location: {
         type: String,
-        required: true
     },
     countryType: {
         type: String,
-        required: true
     },
     country : {
         type: String,
@@ -59,6 +62,52 @@ const marriageSchema = new mongoose.Schema({
       type: String,
       required : true  
     },
+    currentAddress: {
+        type: String,
+        required: true
+    },
+
+    nativePlaceLocation: {
+        type: String,
+        required: true
+    },
+    nativePlaceCountry:{
+        type: String,
+        required: true
+    },
+    nativePlaceState: {
+        type: String,
+        required: true
+    },
+    nativePlaceCity:{
+        type: String,
+        required: true
+    },
+    nativePlaceCurrentAddress:{
+        type: String,
+        required: true
+    },
+    currentAddressLocation:{
+        type: String,
+        required: true
+    
+    },
+    currentAddressCountry:{
+        type: String,
+        required: true
+    },
+    currentAddressState:{
+        type: String,
+        required: true
+    },
+    currentAddressCity:{
+        type: String,
+        required: true
+    },
+    currentAddressScope:{
+        type: String,
+        required: true
+    },
     heightInCms: {
         type: String,
         required: true
@@ -70,6 +119,34 @@ const marriageSchema = new mongoose.Schema({
     education: {
         type: String,
         required: true
+    },
+    profession:{
+        type: String,
+        required: false
+    },
+    otherProfession:{
+        type: String,
+        required: false
+    },
+    serviceType:{
+        type: String,
+        required: false
+    },
+    serviceDetails:{
+        type: String,
+        required: false
+    },
+    educationDetails:{
+        type: String,
+        required: false
+    },
+    businessDetails:{
+        type: String,
+        required: false
+    },
+    selfEmployeeDetails:{
+        type: String,
+        required: false
     },
     occupation:{
         type: String,
@@ -102,7 +179,7 @@ const marriageSchema = new mongoose.Schema({
     },
     image3: {
         type: String,
-        required: true
+        required: false
     },
     phoneNumber1 :{
         type: Number,

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../krn-client"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "krn-client"
+	}
+}

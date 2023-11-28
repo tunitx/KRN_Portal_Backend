@@ -11,7 +11,7 @@ router.post(
   { name: "image1", maxCount: 1 },
   { name: "image2", maxCount: 1 },
   { name: "image3", maxCount: 1 },
-]),
+  ]),
   async (req, res) => {
     console.log(req.body)
     try {
@@ -23,7 +23,8 @@ router.post(
       // }
       const {
         gender,
-        fullName,
+        firstName,
+        surname,
         caste,
         subcaste,
         gotra,
@@ -35,9 +36,26 @@ router.post(
         country,
         state,
         city,
+        nativePlaceLocation,
+        nativePlaceCountry,
+        nativePlaceState,
+        nativePlaceCity,
+        nativePlaceCurrentAddress,
+        currentAddressLocation,
+        currentAddressCountry,
+        currentAddressState,
+        currentAddressCity,
+        currentAddressScope,
         heightFeet,
         complexion,
         education,
+        profession,
+        otherProfession,
+        serviceType,
+        serviceDetails,
+        educationDetails,
+        businessDetails,
+        selfEmployeeDetails,
         occupation,
         incomeBracket,
         maritalStatus,
@@ -55,14 +73,16 @@ router.post(
       const fileUrl = req.files["file"][0].location;
       const image1Url = req.files["image1"][0].location;
       const image2Url = req.files["image2"][0].location;
-      const image3Url = req.files["image3"][0].location
-      console.log(fileUrl, image1Url, image2Url, image3Url)
-      
+      const image3Url = req.files["image3"] ? req.files["image3"][0].location : null;
+
+      // console.log(fileUrl, image1Url, image2Url)
+
 
       //? Create a new MarriageProfile object with the extracted details
       const newMarriageProfile = new MarriageProfile({
         gender,
-        fullName,
+        firstName,
+        surname,
         caste,
         subcaste,
         gotra,
@@ -75,17 +95,34 @@ router.post(
         country,
         state,
         city,
+        nativePlaceLocation,
+        nativePlaceCountry,
+        nativePlaceState,
+        nativePlaceCity,
+        nativePlaceCurrentAddress,
+        currentAddressLocation,
+        currentAddressCountry,
+        currentAddressState,
+        currentAddressCity,
+        currentAddressScope,
         heightInCms: heightInCms,
         complexion,
         education,
+        profession,
+        otherProfession,
+        serviceType,
+        serviceDetails,
+        educationDetails,
+        businessDetails,
+        selfEmployeeDetails,
         occupation,
         incomeBracket,
         maritalStatus,
         pwd,
-        file : fileUrl,
-        image1 : image1Url,
-        image2 : image2Url,
-        image3 : image3Url,
+        file: fileUrl,
+        image1: image1Url,
+        image2: image2Url,
+        image3: image3Url,
         phoneNumber1,
         phoneNumber2,
         email,
@@ -93,7 +130,7 @@ router.post(
           timeZone: "Asia/Kolkata",
         }),
       });
-console.log(newMarriageProfile);
+      console.log(newMarriageProfile);
       //? Save the new MarriageProfile object to the database
       await newMarriageProfile.save();
 
